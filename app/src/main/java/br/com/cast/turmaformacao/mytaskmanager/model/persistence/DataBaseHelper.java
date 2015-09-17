@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.mytaskmanager.util.ApplicationUtil;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
@@ -22,6 +23,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(TaskContract.getCreateTableScript());
+        db.execSQL(LabelContract.getCreateTableScript());
     }
 
     @Override

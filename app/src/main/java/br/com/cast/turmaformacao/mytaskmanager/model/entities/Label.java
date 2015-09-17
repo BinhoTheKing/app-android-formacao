@@ -3,6 +3,9 @@ package br.com.cast.turmaformacao.mytaskmanager.model.entities;
 public class Label {
     private Integer id;
     private String name;
+    private String description;
+
+    private String color;
 
     public Label(){
         super();
@@ -24,6 +27,22 @@ public class Label {
         this.name = name;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     @Override
     public String toString() {
         return "Label{" +
