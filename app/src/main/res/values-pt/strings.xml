@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Meu Gerenciador de Tarefas</string>
+
+    <string name="hello_world">Olá Mundo!</string>
+    <string name="action_settings">Configurações</string>
+    <string name="lbl_login">Usuário</string>
+    <string name="lbl_password">Senha</string>
+    <string name="lbl_signin">Entrar</string>
+    <string name="msg_welcome">Seja bem vindo %s!</string>
+    <string name="lbl_altura">Altura</string>
+    <string name="lbl_peso">Peso</string>
+    <string name="btn_Calcular">Calcular IMC</string>
+    <string name="msg_imc">Seu IMC é %.2f!</string>
+    <string name="lbl_name">Nome</string>
+    <string name="lbl_description">Descrição</string>
+    <string name="lbl_add">Adicionar</string>
+    <string name="lbl_save">Salvar</string>
+    <string name="msg_save">Salvo</string>
+    <string name="msg_error_required">Campo Obrigatório!</string>
+    <string name="msg_save_success">Salvo com Sucesso!</string>
+    <string name="lbl_edit">Editar</string>
+    <string name="lbl_delete">Excluir</string>
+    <string name="msg_update_task">Alterado com sucesso!</string>
+    <string name="msg_delete_task">Removido com sucesso!</string>
+    <string name="lbl_confirm">Confirmar</string>
+    <string name="msg_delete_confirm">Deseja realmente excluir essa tarefa?</string>
+    <string name="lbl_yes">Sim</string>
+    <string name="lbl_no">Não</string>
+</resources>
