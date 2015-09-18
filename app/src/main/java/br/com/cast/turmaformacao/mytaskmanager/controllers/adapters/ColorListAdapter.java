@@ -100,35 +100,12 @@ public class ColorListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView = convertView;
+        Color color = (Color) getItem(position);
+        View colorSpinnerItemView = context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
 
+        View colorView = colorSpinnerItemView.findViewById(R.id.viewColor);
+        colorView.setBackgroundColor(android.graphics.Color.parseColor(color.getHex()));
 
-        if (rowView == null) {
-            // Get a new instance of the row layout view
-            LayoutInflater inflater = this.context.getLayoutInflater();
-            rowView = inflater.inflate(R.layout.list_item_color, null);
-
-            rowView.setBackgroundColor(android.graphics.Color.parseColor(Color.values()[position].getHex()));
-
-        } else {
-            rowView.setBackgroundColor(android.graphics.Color.parseColor(Color.values()[position].getHex()));
-        }
-
-
-        return rowView;
-    }
-
-    @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        View labelView = convertView;
-
-        if (labelView == null) {
-            labelView = this.context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
-        }
-        int parsedColor = android.graphics.Color.parseColor(Color.values()[position].getHex());
-
-        labelView.setBackgroundColor(parsedColor);
-
-        return labelView;
+        return colorSpinnerItemView;
     }
 }
