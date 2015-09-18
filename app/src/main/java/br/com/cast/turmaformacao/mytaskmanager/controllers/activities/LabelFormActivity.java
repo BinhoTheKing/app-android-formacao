@@ -61,6 +61,6 @@ public class LabelFormActivity extends AppCompatActivity {
 
     private void bindSpinnerColors() {
         spinnerColors = (Spinner) findViewById(R.id.spinnerColors);
-//        spinnerColors.setAdapter(new ColorListAdapter(LabelFormActivity.this));
+        spinnerColors.setAdapter(new ColorListAdapter(LabelFormActivity.this));
     }
 }

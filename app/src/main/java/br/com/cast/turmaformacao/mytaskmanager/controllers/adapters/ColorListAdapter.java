@@ -2,6 +2,7 @@ package br.com.cast.turmaformacao.mytaskmanager.controllers.adapters;
 
 import android.app.Activity;
 import android.database.DataSetObserver;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -99,6 +100,26 @@ public class ColorListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View rowView = convertView;
+
+
+        if (rowView == null) {
+            // Get a new instance of the row layout view
+            LayoutInflater inflater = this.context.getLayoutInflater();
+            rowView = inflater.inflate(R.layout.list_item_color, null);
+
+            rowView.setBackgroundColor(android.graphics.Color.parseColor(Color.values()[position].getHex()));
+
+        } else {
+            rowView.setBackgroundColor(android.graphics.Color.parseColor(Color.values()[position].getHex()));
+        }
+
+
+        return rowView;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View labelView = convertView;
 
         if (labelView == null) {
