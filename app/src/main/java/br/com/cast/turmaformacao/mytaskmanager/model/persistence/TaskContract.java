@@ -13,8 +13,9 @@ public class TaskContract {
     public static final String ID = "id";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
+    public static final String LABEL_ID = "label_id";
 
-    public static final String COLUMNS[] = {ID, NAME, DESCRIPTION};
+    public static final String COLUMNS[] = {ID, NAME, DESCRIPTION,LABEL_ID};
 
     private TaskContract() {
     }
@@ -25,7 +26,8 @@ public class TaskContract {
         create.append(" ( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
         create.append(NAME + " TEXT, ");
-        create.append(DESCRIPTION + " TEXT ");
+        create.append(DESCRIPTION + " TEXT, ");
+        create.append(LABEL_ID + " INTEGER FOREIGN KEY REFERENCES label (label_id) ");
         create.append(" ) ");
         return create.toString();
     }
