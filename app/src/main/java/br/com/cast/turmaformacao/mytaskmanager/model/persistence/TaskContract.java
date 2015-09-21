@@ -29,7 +29,6 @@ public class TaskContract {
         create.append(" ) ");
         return create.toString();
     }
-
     public static ContentValues getContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(ID, task.getId());
@@ -37,6 +36,7 @@ public class TaskContract {
         values.put(DESCRIPTION, task.getDescription());
         return values;
     }
+
 
 
     public static Task getTask(Cursor cursor) {

@@ -28,4 +28,8 @@
     <string name="lbl_no">No</string>
     <string name="dialog_color_label_title">Select Color</string>
     <string name="lbl_cancel">Cancel</string>
+    <string name="lbl_labels">Labels</string>
+    <string name="lbl_label">Label</string>
+    <string name="lbl_re_password">Re-Passowrd</string>
+    <string name="lbl_signup">SignUp</string>
 </resources>

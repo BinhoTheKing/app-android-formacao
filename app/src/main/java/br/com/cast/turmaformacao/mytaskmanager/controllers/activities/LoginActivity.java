@@ -14,15 +14,26 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextLogin;
     private EditText editTextPassword;
     private Button buttonLogin;
+    private Button buttonSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+    }
+
+    @Override
+    protected void onResume() {
         bindEditTextLogin();
         bindEditTextPassword();
         bindButtonLogin();
+        bindButtonSignUp();
+        super.onResume();
+    }
+
+    private void bindButtonSignUp() {
+        buttonSignUp = (Button) findViewById(R.id.buttonSignUp);
     }
 
     private void bindButtonLogin() {

@@ -14,7 +14,7 @@
     <string name="msg_imc">Seu IMC é %.2f!</string>
     <string name="lbl_name">Nome</string>
     <string name="lbl_description">Descrição</string>
-    <string name="lbl_add">Adicionar</string>
+    <string name="lbl_add">Add</string>
     <string name="lbl_save">Salvar</string>
     <string name="msg_save">Salvo</string>
     <string name="msg_error_required">Campo Obrigatório!</string>
@@ -29,4 +29,8 @@
     <string name="lbl_no">Não</string>
     <string name="dialog_color_label_title">Selecione uma Cor</string>
     <string name="lbl_cancel">Cancelar</string>
+    <string name="lbl_labels">Categorias</string>
+    <string name="lbl_label">Categoria</string>
+    <string name="lbl_re_password">Re-Insira a Senha</string>
+    <string name="lbl_signup">Cadastre-se</string>
 </resources>

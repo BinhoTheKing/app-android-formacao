@@ -41,7 +41,7 @@ public class LabelFormActivity extends AppCompatActivity {
     public void onMenuSaveClick() {
         label.setName(editTextName.getText().toString());
         LabelRepository.save(label);
-        Toast.makeText(LabelFormActivity.this, LabelRepository.getAll().toString(), Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     @Override
