@@ -65,15 +65,6 @@ public class LabelFormActivity extends AppCompatActivity {
 
 //        listViewTaskList = (ListView) findViewById(R.id.listViewTaskList);
 //        List<Task> values = TaskBusinessService.findAll();
-//        registerForContextMenu(listViewTaskList);
 //        listViewTaskList.setAdapter(new TaskListAdapter(this, values));
-//        listViewTaskList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-//            @Override
-//            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-//                TaskListAdapter selectedAdapter = (TaskListAdapter) listViewTaskList.getAdapter();
-//                selectedTask = selectedAdapter.getItem(position);
-//                return false;
-//            }
-//        });
     }
 }

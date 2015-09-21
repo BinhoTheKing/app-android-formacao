@@ -4,9 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <view
+    <View
         android:id="@+id/viewColor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></view>
-
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>
