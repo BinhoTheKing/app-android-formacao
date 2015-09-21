@@ -18,8 +18,8 @@
             android:layout_weight="8"
             android:hint="@string/lbl_name" />
 
-        <Spinner
-            android:id="@+id/spinnerColors"
+        <View
+            android:id="@+id/viewColors"
             android:layout_width="0dp"
             android:layout_height="72dp"
             android:layout_weight="2" />

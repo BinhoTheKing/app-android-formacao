@@ -7,7 +7,7 @@
     <string name="lbl_login">Usuário</string>
     <string name="lbl_password">Senha</string>
     <string name="lbl_signin">Entrar</string>
-    <string name="msg_welcome">Seja bem vindo %s!</string>
+    <string name="msg_welcome">Seja bem-vindo %s!</string>
     <string name="lbl_altura">Altura</string>
     <string name="lbl_peso">Peso</string>
     <string name="btn_Calcular">Calcular IMC</string>
@@ -27,4 +27,6 @@
     <string name="msg_delete_confirm">Deseja realmente excluir essa tarefa?</string>
     <string name="lbl_yes">Sim</string>
     <string name="lbl_no">Não</string>
+    <string name="dialog_color_label_title">Selecione uma Cor</string>
+    <string name="lbl_cancel">Cancelar</string>
 </resources>

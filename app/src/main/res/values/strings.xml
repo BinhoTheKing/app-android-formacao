@@ -26,4 +26,6 @@
     <string name="msg_delete_confirm">You really want to delete this task?</string>
     <string name="lbl_yes">Yes</string>
     <string name="lbl_no">No</string>
+    <string name="dialog_color_label_title">Select Color</string>
+    <string name="lbl_cancel">Cancel</string>
 </resources>

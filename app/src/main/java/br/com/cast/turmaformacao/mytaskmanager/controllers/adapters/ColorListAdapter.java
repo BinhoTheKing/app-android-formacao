@@ -21,20 +21,22 @@ import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 public class ColorListAdapter extends BaseAdapter {
 
     private Activity context;
+    private Color[] colors;
 
     public ColorListAdapter(Activity context) {
         super();
         this.context = context;
+        colors = Color.values();
     }
 
     @Override
     public int getCount() {
-        return Color.values().length;
+        return colors.length;
     }
 
     @Override
-    public Object getItem(int position) {
-        return Color.values()[position];
+    public Color getItem(int position) {
+        return colors[position];
     }
 
     @Override
@@ -44,28 +46,10 @@ public class ColorListAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Color color = (Color) getItem(position);
-        View colorSpinnerItemView =  convertView;
-        if(colorSpinnerItemView == null){
-            colorSpinnerItemView = this.context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
-        }
-        View colorView = (View) colorSpinnerItemView.findViewById(R.id.viewColor);
-        //colorView.setBackgroundColor(android.graphics.Color.parseColor(color.getHex()));
-        colorView.setBackgroundColor(Integer.parseInt(color.getHex().replaceFirst("^#", ""), 16));
+        View colorItemView = this.context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
+        colorItemView.findViewById(R.id.viewColor)
+                .setBackgroundColor(android.graphics.Color.parseColor(getItem(position).getHex()));
 
-        return colorSpinnerItemView;
-    }
-    @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        Color color = (Color) getItem(position);
-        View colorSpinnerItemView =  convertView;
-        if(colorSpinnerItemView == null){
-            colorSpinnerItemView = this.context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
-        }
-        View colorView = (View) colorSpinnerItemView.findViewById(R.id.viewColor);
-        //colorView.setBackgroundColor(android.graphics.Color.parseColor(color.getHex()));
-        colorView.setBackgroundColor(Integer.parseInt(color.getHex().replaceFirst("^#",""), 16));
-
-        return colorSpinnerItemView;
+        return colorItemView;
     }
 }
