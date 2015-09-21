@@ -20,12 +20,13 @@ public class LabelFormActivity extends AppCompatActivity {
     private View viewColors;
     private EditText editTextName;
     private EditText editTextDescription;
+    private Label label;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_label_form);
-
+        label = new Label();
         bindEditTextName();
         bindViewColors();
         bindEditTextDescription();
@@ -38,7 +39,6 @@ public class LabelFormActivity extends AppCompatActivity {
     }
 
     public void onMenuSaveClick() {
-        Label label = new Label();
         label.setName(editTextName.getText().toString());
         LabelRepository.save(label);
         Toast.makeText(LabelFormActivity.this, LabelRepository.getAll().toString(), Toast.LENGTH_SHORT).show();
@@ -86,6 +86,7 @@ public class LabelFormActivity extends AppCompatActivity {
 
     private void updateColor(Color item) {
         viewColors.setBackgroundColor(android.graphics.Color.parseColor(item.getHex()));
+        label.setColor(item.getHex());
     }
 }
 
