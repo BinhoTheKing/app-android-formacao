@@ -6,6 +6,7 @@ import android.database.Cursor;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.Color;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 
 public class LabelContract {
@@ -34,7 +35,7 @@ public class LabelContract {
         contentValues.put(ID, label.getId());
         contentValues.put(NAME, label.getName());
         contentValues.put(DESCRIPTION, label.getDescription());
-        contentValues.put(COLOR, label.getColor());
+        contentValues.put(COLOR, label.getColor().getHex());
         return contentValues;
     }
 
@@ -44,7 +45,13 @@ public class LabelContract {
             label.setId(cursor.getInt(cursor.getColumnIndex(ID)));
             label.setName(cursor.getString(cursor.getColumnIndex(NAME)));
             label.setDescription(cursor.getString(cursor.getColumnIndex(DESCRIPTION)));
-            label.setColor(cursor.getString(cursor.getColumnIndex(COLOR)));
+            for (Color color :
+                    Color.values()) {
+                if(color.getHex().equals(cursor.getString(cursor.getColumnIndex(COLOR)))){
+                    label.setColor(color);
+                    return label;
+                }
+            }
             return label;
         }
         return null;

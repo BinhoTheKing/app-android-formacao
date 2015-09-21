@@ -4,8 +4,7 @@ public class Label {
     private Integer id;
     private String name;
     private String description;
-
-    private String color;
+    private Color color;
 
     public Label(){
         super();
@@ -27,11 +26,11 @@ public class Label {
         this.name = name;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
