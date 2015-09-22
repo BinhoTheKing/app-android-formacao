@@ -14,8 +14,9 @@ public class TaskContract {
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String LABEL_ID = "label_id";
+    public static final String USER_ID = "user_id";
 
-    public static final String COLUMNS[] = {ID, NAME, DESCRIPTION,LABEL_ID};
+    public static final String COLUMNS[] = {ID, NAME, DESCRIPTION, LABEL_ID, USER_ID};
 
     private TaskContract() {
     }
@@ -27,18 +28,25 @@ public class TaskContract {
         create.append(ID + " INTEGER PRIMARY KEY, ");
         create.append(NAME + " TEXT, ");
         create.append(DESCRIPTION + " TEXT, ");
-        create.append(LABEL_ID + " INTEGER FOREIGN KEY REFERENCES label (label_id) ");
+        create.append(LABEL_ID + " INTEGER, ");
+        create.append("FOREIGN KEY (" + LABEL_ID + ") REFERENCES " + LabelContract.TABLE);
+        create.append(" ( " + LabelContract.ID + " ), ");
+        create.append(USER_ID + " INTEGER, ");
+        create.append("FOREIGN KEY (" + USER_ID + ") REFERENCES " + UserContract.TABLE);
+        create.append(" ( " + UserContract.ID + " ) ");
         create.append(" ) ");
         return create.toString();
     }
+
     public static ContentValues getContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(ID, task.getId());
         values.put(NAME, task.getName());
         values.put(DESCRIPTION, task.getDescription());
+        values.put(LABEL_ID,task.getLabel().getId());
+        values.put(USER_ID,task.getLabel().getId());
         return values;
     }
-
 
 
     public static Task getTask(Cursor cursor) {
@@ -47,6 +55,7 @@ public class TaskContract {
             task.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.ID)));
             task.setName(cursor.getString(cursor.getColumnIndex(TaskContract.NAME)));
             task.setDescription(cursor.getString(cursor.getColumnIndex(TaskContract.DESCRIPTION)));
+            task.setLabel(LabelRepository.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID))));
             return task;
         }
         return null;

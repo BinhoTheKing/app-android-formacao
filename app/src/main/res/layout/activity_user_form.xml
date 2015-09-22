@@ -11,14 +11,14 @@
         android:hint="@string/lbl_name" />
 
     <EditText
-        android:id="@+id/editTextUserPassowrd"
+        android:id="@+id/editTextUserPassword"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:hint="@string/lbl_password"
         android:password="true" />
 
     <EditText
-        android:id="@+id/editTextUserRePassowrd"
+        android:id="@+id/editTextUserRePassword"
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:hint="@string/lbl_re_password"

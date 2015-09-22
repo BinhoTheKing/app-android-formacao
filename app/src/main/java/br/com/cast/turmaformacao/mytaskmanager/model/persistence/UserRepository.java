@@ -7,24 +7,25 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.List;
 
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
 
 public final class UserRepository {
     private UserRepository() {
         super();
     }
 
-    public static void save(Task task) {
+    public static void save(User user) {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
 
-        ContentValues values = TaskContract.getContentValues(task);
+        ContentValues values = UserContract.getContentValues(user);
 
-        if (task.getId() == null) {
-            db.insert(TaskContract.TABLE, null, values);
+        if (user.getId() == null) {
+            db.insert(UserContract.TABLE, null, values);
         } else {
             String where = TaskContract.ID + " = ? ";
-            String[] params = {task.getId().toString()};
-            db.update(TaskContract.TABLE, values, where, params);
+            String[] params = {user.getId().toString()};
+            db.update(UserContract.TABLE, values, where, params);
         }
 
         db.close();
@@ -35,22 +36,22 @@ public final class UserRepository {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
 
-        String where = TaskContract.ID + " = ? ";
+        String where = UserContract.ID + " = ? ";
         String[] params = {id.toString()};
-        db.delete(TaskContract.TABLE,where,params);
+        db.delete(UserContract.TABLE,where,params);
 
         db.close();
         dataBaseHelper.close();
     }
 
-    public static List<Task> getAll() {
+    public static List<User> getAll() {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
         SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
-        List<Task> values;
+        List<User> values;
 
-        Cursor cursor = db.query(TaskContract.TABLE, TaskContract.COLUMNS, null, null, null, null, TaskContract.ID);
+        Cursor cursor = db.query(UserContract.TABLE, UserContract.COLUMNS, null, null, null, null, UserContract.ID);
 
-        values = TaskContract.getTasks(cursor);
+        values = UserContract.getUsers(cursor);
 
         db.close();
         dataBaseHelper.close();

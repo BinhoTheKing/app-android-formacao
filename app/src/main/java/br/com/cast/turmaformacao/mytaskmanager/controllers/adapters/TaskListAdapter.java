@@ -1,15 +1,23 @@
 package br.com.cast.turmaformacao.mytaskmanager.controllers.adapters;
 
 import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import java.util.List;
 
 import br.com.cast.turmaformacao.mytaskmanager.R;
+import br.com.cast.turmaformacao.mytaskmanager.controllers.activities.TaskListActivity;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
 
 public class TaskListAdapter extends BaseAdapter{
@@ -47,8 +55,12 @@ public class TaskListAdapter extends BaseAdapter{
         Task task = getItem(position);
         View taskListItemView = context.getLayoutInflater().inflate(R.layout.list_item_task, parent, false);
 
-        TextView textViewId = (TextView) taskListItemView.findViewById(R.id.textViewId);
-        textViewId.setText(task.getId().toString());
+
+        ImageView viewColor = (ImageView) taskListItemView.findViewById(R.id.viewColor);
+        GradientDrawable shape = (GradientDrawable) context.getResources().getDrawable(R.drawable.shape_circle);
+        assert shape != null;
+        shape.setColor(android.graphics.Color.parseColor(task.getLabel().getColor().getHex()));
+        viewColor.setImageDrawable(shape);
 
         TextView textViewName = (TextView) taskListItemView.findViewById(R.id.textViewName);
         textViewName.setText(task.getName());

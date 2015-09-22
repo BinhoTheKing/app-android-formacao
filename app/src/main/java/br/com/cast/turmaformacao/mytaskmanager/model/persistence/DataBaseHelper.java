@@ -22,8 +22,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(TaskContract.getCreateTableScript());
         db.execSQL(LabelContract.getCreateTableScript());
+        db.execSQL(TaskContract.getCreateTableScript());
+        db.execSQL(UserContract.getCreateTableScript());
     }
 
     @Override

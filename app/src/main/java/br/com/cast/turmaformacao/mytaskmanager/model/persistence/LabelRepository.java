@@ -41,6 +41,21 @@ public final class LabelRepository {
         dataBaseHelper.close();
     }
 
+    public static Label getById(Long id){
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        Label label;
+
+        String where = LabelContract.ID + " = ?";
+        String[] params = {id.toString()};
+        Cursor cursor = db.query(LabelContract.TABLE, LabelContract.COLUMNS, where, params, null, null, null);
+        label = LabelContract.getLabel(cursor);
+
+        db.close();
+        dataBaseHelper.close();
+        return label;
+    }
+
     public static List<Label> getAll(){
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
         SQLiteDatabase db = dataBaseHelper.getWritableDatabase();

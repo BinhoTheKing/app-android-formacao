@@ -47,7 +47,7 @@ public class UserContract {
         return null;
     }
 
-    public static List<User> getTasks(Cursor cursor) {
+    public static List<User> getUsers(Cursor cursor) {
         ArrayList<User> users = new ArrayList<>();
         while (cursor.moveToNext()) {
             users.add(getUser(cursor));

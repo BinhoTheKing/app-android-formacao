@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import br.com.cast.turmaformacao.mytaskmanager.R;
 import br.com.cast.turmaformacao.mytaskmanager.controllers.adapters.LabelListAdapter;
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
 import br.com.cast.turmaformacao.mytaskmanager.model.services.TaskBusinessService;
 import br.com.cast.turmaformacao.mytaskmanager.util.FormHelper;
@@ -24,18 +25,17 @@ public class TaskFormActivity extends AppCompatActivity {
     private Task task;
     private Spinner spinnerLabels;
     private Button buttonSaveLabel;
-    public static final String PARAM_TASK = "PARAM_TASK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_form);
-        initTask();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        initTask();
         bindEditTextName();
         bindEditTextDescription();
         bindSnipperLabels();
@@ -57,15 +57,24 @@ public class TaskFormActivity extends AppCompatActivity {
     private void bindSnipperLabels() {
         spinnerLabels = (Spinner) findViewById(R.id.snipperLabels);
         spinnerLabels.setAdapter(new LabelListAdapter(this));
+        if (task!=null) {
+            for (int i = 0; i<spinnerLabels.getAdapter().getCount(); i++){
+                Label label = (Label) spinnerLabels.getItemAtPosition(i);
+                if (task.getLabel()!=null) {
+                    if(label.getId().equals(task.getLabel().getId())){
+                        spinnerLabels.setSelection(i);
+                    }
+                }
+            }
+        }
     }
 
     private void initTask() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            this.task = extras.getParcelable(PARAM_TASK);
+            this.task = extras.getParcelable(Task.PARAM_TASK);
         }
-        this.task = task == null ? new Task() : this.task;
-        this.task.setLabel(this.task.getLabel());
+        this.task = this.task == null ? new Task() : this.task;
     }
 
 
@@ -98,6 +107,7 @@ public class TaskFormActivity extends AppCompatActivity {
     private void binTask() {
         task.setName(editTextName.getText().toString());
         task.setDescription(editTextDescription.getText().toString());
+        task.setLabel((Label) spinnerLabels.getSelectedItem());
     }
 
     private void bindEditTextDescription() {

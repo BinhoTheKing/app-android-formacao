@@ -8,9 +8,13 @@ public class Task implements Parcelable {
     private String name;
     private String description;
     private Label label;
+    private User user;
+    public static final String PARAM_TASK = "PARAM_TASK";
 
     public Task() {
         super();
+        this.label = new Label();
+        this.user = new User();
     }
 
     protected Task(Parcel in) {
@@ -102,6 +106,7 @@ public class Task implements Parcelable {
         dest.writeLong(this.id == null ? -1 : this.id);
         dest.writeString(this.name == null ? "" : this.name);
         dest.writeString(this.description == null ? "" : this.description);
+        dest.writeParcelable(this.label == null ? new Label() : this.label, flags);
     }
 
     public void readFromParcel(Parcel inp) {
@@ -110,6 +115,7 @@ public class Task implements Parcelable {
         this.id = this.id == -1 ? null : this.id;
         this.name = inp.readString();
         this.description = inp.readString();
+        this.label = inp.readParcelable(Label.class.getClassLoader());
     }
 }
 

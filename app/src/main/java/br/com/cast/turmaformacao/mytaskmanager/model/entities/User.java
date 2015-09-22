@@ -1,9 +1,16 @@
 package br.com.cast.turmaformacao.mytaskmanager.model.entities;
 
-public class User {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.List;
+
+public class User implements Parcelable {
     private Integer id;
     private String name;
     private String password;
+    private List<Task> tasks;
+    public static String PARAM_USER;
 
     public User(){super();}
     public User(Integer id, String name, String password) {
@@ -65,4 +72,34 @@ public class User {
                 ", password='" + password + '\'' +
                 '}';
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.password);
+        dest.writeTypedList(tasks);
+    }
+
+    protected User(Parcel in) {
+        this.id = (Integer) in.readValue(Integer.class.getClassLoader());
+        this.name = in.readString();
+        this.password = in.readString();
+        this.tasks = in.createTypedArrayList(Task.CREATOR);
+    }
+
+    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+        public User createFromParcel(Parcel source) {
+            return new User(source);
+        }
+
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 }

@@ -33,4 +33,5 @@
     <string name="lbl_label">Categoria</string>
     <string name="lbl_re_password">Re-Insira a Senha</string>
     <string name="lbl_signup">Cadastre-se</string>
+    <string name="msg_error_usr">Usuário não encontrado ou senha incorreta, deseja cadastrar novo usuário?</string>
 </resources>

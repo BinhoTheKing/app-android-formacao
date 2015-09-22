@@ -104,7 +104,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     private void onMenuEditClick() {
         Intent goToTaskForm = new Intent(TaskListActivity.this, TaskFormActivity.class);
-        goToTaskForm.putExtra(TaskFormActivity.PARAM_TASK, selectedTask);
+        goToTaskForm.putExtra(Task.PARAM_TASK, selectedTask);
         startActivity(goToTaskForm);
     }
 
