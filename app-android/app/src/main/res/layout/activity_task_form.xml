@@ -27,11 +27,20 @@
         android:layout_height="match_parent"
         android:orientation="horizontal">
 
-        <Spinner
-            android:id="@+id/snipperLabels"
+        <FrameLayout
+            android:id="@+id/spinnerLayout"
             android:layout_width="0dp"
             android:layout_height="72dp"
-            android:layout_weight="8"/>
+            android:layout_weight="8"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="-4dp">
+            <Spinner
+                android:id="@+id/snipperLabels"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </FrameLayout>
 
         <Button
             android:id="@+id/buttonAddLabel"

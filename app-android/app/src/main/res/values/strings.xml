@@ -30,7 +30,8 @@
     <string name="lbl_cancel">Cancel</string>
     <string name="lbl_labels">Labels</string>
     <string name="lbl_label">Label</string>
-    <string name="lbl_re_password">Re-Passowrd</string>
+    <string name="lbl_re_password">Re-Password</string>
     <string name="lbl_signup">SignUp</string>
     <string name="msg_error_usr">User not found. Register a new account?</string>
+    <string name="msg_error_password_mismatch">Different passwords!</string>
 </resources>

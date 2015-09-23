@@ -9,6 +9,7 @@ public class Task implements Parcelable {
     private String description;
     private Label label;
     private User user;
+
     public static final String PARAM_TASK = "PARAM_TASK";
 
     public Task() {
@@ -47,6 +48,14 @@ public class Task implements Parcelable {
 
     public void setLabel(Label label) {
         this.label = label;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
@@ -120,10 +129,6 @@ public class Task implements Parcelable {
             return new Task[size];
         }
     };
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
 
 

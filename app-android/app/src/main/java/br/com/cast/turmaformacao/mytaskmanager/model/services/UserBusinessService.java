@@ -5,10 +5,7 @@ import java.util.List;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
 import br.com.cast.turmaformacao.mytaskmanager.model.persistence.UserRepository;
 
-/**
- * Created by Administrador on 23/09/2015.
- */
-public class UserBusinessService {
+public final class UserBusinessService {
     private UserBusinessService() {
         super();
     }

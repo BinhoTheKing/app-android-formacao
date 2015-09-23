@@ -17,7 +17,7 @@ public class UserContract {
     public static final String NAME = "name";
     public static final String PASSWORD = "password";
 
-    public static final String[] COLUMNS = {TABLE,ID,NAME, PASSWORD};
+    public static final String[] COLUMNS = {ID,NAME, PASSWORD};
 
     public static String getCreateTableScript() {
         final StringBuilder create = new StringBuilder();

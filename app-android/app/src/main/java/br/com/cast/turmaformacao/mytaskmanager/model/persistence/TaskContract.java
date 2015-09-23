@@ -31,9 +31,9 @@ public class TaskContract {
         create.append(NAME + " TEXT, ");
         create.append(DESCRIPTION + " TEXT, ");
         create.append(LABEL_ID + " INTEGER, ");
+        create.append(USER_ID + " INTEGER, ");
         create.append("FOREIGN KEY (" + LABEL_ID + ") REFERENCES " + LabelContract.TABLE);
         create.append(" ( " + LabelContract.ID + " ), ");
-        create.append(USER_ID + " INTEGER, ");
         create.append("FOREIGN KEY (" + USER_ID + ") REFERENCES " + UserContract.TABLE);
         create.append(" ( " + UserContract.ID + " ) ");
         create.append(" ) ");
@@ -58,7 +58,7 @@ public class TaskContract {
             task.setName(cursor.getString(cursor.getColumnIndex(TaskContract.NAME)));
             task.setDescription(cursor.getString(cursor.getColumnIndex(TaskContract.DESCRIPTION)));
             task.setLabel(LabelBusinessService.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID))));
-            task.setUser(UserBusinessService.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID))));
+            task.setUser(UserBusinessService.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.USER_ID))));
             return task;
         }
         return null;

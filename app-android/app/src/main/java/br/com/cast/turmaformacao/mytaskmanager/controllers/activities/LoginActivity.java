@@ -3,6 +3,7 @@ package br.com.cast.turmaformacao.mytaskmanager.controllers.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -11,8 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.com.cast.turmaformacao.mytaskmanager.R;
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.Address;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
-import br.com.cast.turmaformacao.mytaskmanager.model.persistence.UserRepository;
+import br.com.cast.turmaformacao.mytaskmanager.model.services.AddressService;
 import br.com.cast.turmaformacao.mytaskmanager.model.services.UserBusinessService;
 
 public class LoginActivity extends AppCompatActivity {
@@ -27,7 +29,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
         user = new User();
+        new GetAddressTask().execute("13565040");
+    }
 
+    private class GetAddressTask extends AsyncTask<String, Void, Address>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Address doInBackground(String... params) {
+            return AddressService.getAddressByZipCode(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Address address) {
+            super.onPostExecute(address);
+        }
     }
 
     @Override
@@ -52,7 +72,9 @@ public class LoginActivity extends AppCompatActivity {
                     String message = getString(R.string.msg_welcome,editTextLogin.getText());
                     Intent redirectToTaskList = new Intent(LoginActivity.this, TaskListActivity.class);
                     Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                    redirectToTaskList.putExtra(User.PARAM_USER, user);
                     startActivity(redirectToTaskList);
+                    finish();
                 }else{
                     AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
                     dialogBuilder.setMessage(getString(R.string.msg_error_usr));
@@ -61,12 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Intent redirectToUserForm = new Intent(LoginActivity.this, UserFormActivity.class);
-                            redirectToUserForm.putExtra(User.PARAM_USER,user);
+                            redirectToUserForm.putExtra(User.PARAM_USER, user);
                             startActivity(redirectToUserForm);
                         }
                     });
+                    dialogBuilder.show();
                 }
-                finish();
             }
         });
     }
@@ -78,6 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 UserBusinessService.findAll()) {
             if(usr.getName().equals(user.getName())){
                 if(usr.getPassword().equals(user.getPassword())){
+                    user.setId(usr.getId());
                     return true;
                 }
             }

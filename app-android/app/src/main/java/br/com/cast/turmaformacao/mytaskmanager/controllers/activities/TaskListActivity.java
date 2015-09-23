@@ -18,6 +18,7 @@ import java.util.List;
 import br.com.cast.turmaformacao.mytaskmanager.R;
 import br.com.cast.turmaformacao.mytaskmanager.controllers.adapters.TaskListAdapter;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
 import br.com.cast.turmaformacao.mytaskmanager.model.services.TaskBusinessService;
 
 
@@ -25,11 +26,15 @@ public class TaskListActivity extends AppCompatActivity {
 
     private ListView listViewTaskList;
     private Task selectedTask;
+    private User activeUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
+        Bundle extras = getIntent().getExtras();
+        assert (extras.get(User.PARAM_USER)) != null;
+        activeUser = (User) extras.get(User.PARAM_USER);
         bindListViewTaskList();
     }
 
@@ -41,7 +46,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     private void updateTaskList() {
         TaskListAdapter adapter = (TaskListAdapter) listViewTaskList.getAdapter();
-        List<Task> values = TaskBusinessService.findAll();
+        List<Task> values = TaskBusinessService.findAll();/*UsersAll(activeUser.getId());*/
         adapter.setDataValues(values);
         adapter.notifyDataSetChanged();
     }
@@ -80,6 +85,7 @@ public class TaskListActivity extends AppCompatActivity {
 
     private void onMenuAddClick() {
         Intent goToTaskFormActivity = new Intent(TaskListActivity.this, TaskFormActivity.class);
+        goToTaskFormActivity.putExtra(User.PARAM_USER,activeUser);
         startActivity(goToTaskFormActivity);
     }
 

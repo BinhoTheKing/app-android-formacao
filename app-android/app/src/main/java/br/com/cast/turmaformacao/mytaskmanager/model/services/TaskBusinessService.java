@@ -14,6 +14,10 @@ public final class TaskBusinessService {
         return TaskRepository.getAll();
     }
 
+    public static List<Task> findUsersAll(Long userId){
+        return TaskRepository.getAllByUserId(userId);
+    }
+
     public static void save(Task task) {
         TaskRepository.save(task);
     }

@@ -43,6 +43,23 @@ public final class TaskRepository {
         dataBaseHelper.close();
     }
 
+    public static List<Task> getAllByUserId(Long userId){
+        DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
+        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        List<Task> values;
+
+        String where = TaskContract.USER_ID + " = ? ";
+        String[] params = {userId.toString()};
+        Cursor cursor = db.query(TaskContract.TABLE, TaskContract.COLUMNS, where, params, null, null, TaskContract.ID);
+
+        values = TaskContract.getTasks(cursor);
+
+        db.close();
+        dataBaseHelper.close();
+
+        return values;
+    }
+
     public static List<Task> getAll() {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
         SQLiteDatabase db = dataBaseHelper.getReadableDatabase();

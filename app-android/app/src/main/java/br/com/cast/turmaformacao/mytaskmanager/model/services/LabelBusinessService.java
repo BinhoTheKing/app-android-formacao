@@ -5,10 +5,7 @@ import java.util.List;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.mytaskmanager.model.persistence.LabelRepository;
 
-/**
- * Created by Administrador on 23/09/2015.
- */
-public class LabelBusinessService {
+public final class LabelBusinessService {
     private LabelBusinessService() {
         super();
     }

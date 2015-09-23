@@ -46,7 +46,7 @@ public final class UserRepository {
 
     public static List<User> getAll() {
         DataBaseHelper dataBaseHelper = DataBaseHelper.getInstance();
-        SQLiteDatabase db = dataBaseHelper.getReadableDatabase();
+        SQLiteDatabase db = dataBaseHelper.getWritableDatabase();
         List<User> values;
 
         Cursor cursor = db.query(UserContract.TABLE, UserContract.COLUMNS, null, null, null, null, UserContract.ID);
@@ -65,14 +65,14 @@ public final class UserRepository {
 
         String where = UserContract.ID + " = ? ";
         String[] params = {id.toString()};
-        List<User> values;
+        User values;
 
         Cursor cursor = db.query(UserContract.TABLE, UserContract.COLUMNS, where, params, null, null, null);
 
-        values = UserContract.getUsers(cursor);
+        values = UserContract.getUser(cursor);
 
         db.close();
         dataBaseHelper.close();
-        return values != null ? values.get(0) : null;
+        return values;
     }
 }

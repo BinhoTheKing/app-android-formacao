@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,6 +16,7 @@ import br.com.cast.turmaformacao.mytaskmanager.R;
 import br.com.cast.turmaformacao.mytaskmanager.controllers.adapters.LabelListAdapter;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
+import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
 import br.com.cast.turmaformacao.mytaskmanager.model.services.TaskBusinessService;
 import br.com.cast.turmaformacao.mytaskmanager.util.FormHelper;
 
@@ -23,6 +25,7 @@ public class TaskFormActivity extends AppCompatActivity {
     private EditText editTextName;
     private EditText editTextDescription;
     private Task task;
+    private User activeUser;
     private Spinner spinnerLabels;
     private Button buttonSaveLabel;
 
@@ -67,14 +70,29 @@ public class TaskFormActivity extends AppCompatActivity {
                 }
             }
         }
+        spinnerLabels.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                View spinnerLayout = TaskFormActivity.this.findViewById(R.id.spinnerLayout);
+                spinnerLayout.setBackgroundColor(android.graphics.Color.parseColor(((Label)spinnerLabels.getSelectedItem()).getColor().getHex().replace("#", "#55")));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private void initTask() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             this.task = extras.getParcelable(Task.PARAM_TASK);
+            this.activeUser = extras.getParcelable(User.PARAM_USER);
         }
         this.task = this.task == null ? new Task() : this.task;
+        this.activeUser = this.activeUser == null ? new User() : this.activeUser;
+        this.task.setUser(activeUser);
     }
 
 
