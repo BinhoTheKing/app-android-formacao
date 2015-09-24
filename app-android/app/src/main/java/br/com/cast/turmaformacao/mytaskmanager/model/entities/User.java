@@ -8,9 +8,11 @@ import java.util.List;
 
 public class User implements Parcelable {
     private Long id;
+    private Long webId;
     private String name;
     private String password;
     private List<Task> tasks;
+	private Address address;
     public static String PARAM_USER = "USER";
 
     public User(){
@@ -24,31 +26,55 @@ public class User implements Parcelable {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long $Id) {
+		id = $Id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getWebId() {
+		return webId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setWebId(Long $WebId) {
+		webId = $WebId;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setName(String $Name) {
+		name = $Name;
+	}
 
-    @Override
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String $Password) {
+		password = $Password;
+	}
+
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(List<Task> $Tasks) {
+		tasks = $Tasks;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address $Address) {
+		address = $Address;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

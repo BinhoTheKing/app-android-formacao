@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 public class Label implements Parcelable {
     private Integer id;
+    private Long webId;
     private String name;
     private String description;
     private Color color;
@@ -13,39 +14,47 @@ public class Label implements Parcelable {
         super();
     }
 
-    public Integer getId() {
-        return id;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setId(Integer $Id) {
+		id = $Id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getWebId() {
+		return webId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setWebId(Long $WebId) {
+		webId = $WebId;
+	}
 
-    public Color getColor() {
-        return color;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
+	public void setName(String $Name) {
+		name = $Name;
+	}
 
+	public String getDescription() {
+		return description;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setDescription(String $Description) {
+		description = $Description;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    @Override
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color $Color) {
+		color = $Color;
+	}
+
+	@Override
     public String toString() {
         return "Label{" +
                 "id=" + id +

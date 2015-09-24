@@ -3,6 +3,7 @@ package br.com.cast.turmaformacao.mytaskmanager.controllers.activities;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
@@ -13,28 +14,49 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import br.com.cast.turmaformacao.mytaskmanager.R;
 import br.com.cast.turmaformacao.mytaskmanager.controllers.adapters.TaskListAdapter;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Task;
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.User;
 import br.com.cast.turmaformacao.mytaskmanager.model.services.TaskBusinessService;
+import br.com.cast.turmaformacao.mytaskmanager.model.services.TaskHttpService;
 
 
 public class TaskListActivity extends AppCompatActivity {
 
     private ListView listViewTaskList;
-    private Task selectedTask;
+	private List<Task> tasks;
+	private Task selectedTask;
     private User activeUser;
+
+	private class GetTasksFromWeb extends AsyncTask<String, Void, List<Task>> {
+
+
+		@Override
+		protected List<Task> doInBackground(String... params) {
+			return TaskHttpService.getAllTasks();
+		}
+
+		@Override
+		protected void onPostExecute(List<Task> result) {
+			super.onPostExecute(result);
+		}
+	}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
         Bundle extras = getIntent().getExtras();
-        assert (extras.get(User.PARAM_USER)) != null;
-        activeUser = (User) extras.get(User.PARAM_USER);
+        if((extras.get(User.PARAM_USER)) != null){
+	        activeUser = (User) extras.get(User.PARAM_USER);
+        }else{
+	        activeUser = null;
+        }
         bindListViewTaskList();
     }
 
@@ -46,8 +68,15 @@ public class TaskListActivity extends AppCompatActivity {
 
     private void updateTaskList() {
         TaskListAdapter adapter = (TaskListAdapter) listViewTaskList.getAdapter();
-        List<Task> values = TaskBusinessService.findAll();/*UsersAll(activeUser.getId());*/
-        adapter.setDataValues(values);
+        /*TaskBusinessService.findAll();UsersAll(activeUser.getId());*/
+	    try {
+		    tasks = new GetTasksFromWeb().execute().get();
+	    } catch (InterruptedException e) {
+		    e.printStackTrace();
+	    } catch (ExecutionException e) {
+		    e.printStackTrace();
+	    }
+	    adapter.setDataValues(tasks);
         adapter.notifyDataSetChanged();
     }
 

@@ -34,4 +34,10 @@
     <string name="lbl_signup">SignUp</string>
     <string name="msg_error_usr">User not found. Register a new account?</string>
     <string name="msg_error_password_mismatch">Different passwords!</string>
+    <string name="lbl_zip_code">Zip Code</string>
+    <string name="lbl_address_type">Type</string>
+    <string name="lbl_street">Street</string>
+    <string name="lbl_neighborhood">Neighborhood</string>
+    <string name="lbl_city">City</string>
+    <string name="lbl_state_uf">State</string>
 </resources>

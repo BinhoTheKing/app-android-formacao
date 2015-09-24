@@ -3,11 +3,19 @@ package br.com.cast.turmaformacao.mytaskmanager.model.entities;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Task implements Parcelable {
+	@JsonIgnore
     private Long id;
+	@JsonProperty("_id")
+    private Long webId;
     private String name;
     private String description;
+	@JsonIgnore
     private Label label;
+	@JsonIgnore
     private User user;
 
     public static final String PARAM_TASK = "PARAM_TASK";
@@ -18,47 +26,55 @@ public class Task implements Parcelable {
         this.user = new User();
     }
 
-    public Long getId() {
-        return id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setId(Long $Id) {
+		id = $Id;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Long getWebId() {
+		return webId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setWebId(Long $WebId) {
+		webId = $WebId;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setName(String $Name) {
+		name = $Name;
+	}
 
-    public Label getLabel() {
-        return this.label;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setLabel(Label label) {
-        this.label = label;
-    }
+	public void setDescription(String $Description) {
+		description = $Description;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public Label getLabel() {
+		return label;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setLabel(Label $Label) {
+		label = $Label;
+	}
 
-    @Override
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User $User) {
+		user = $User;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

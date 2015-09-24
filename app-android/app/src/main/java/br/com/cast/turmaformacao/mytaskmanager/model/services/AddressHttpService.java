@@ -10,11 +10,11 @@ import java.net.URL;
 
 import br.com.cast.turmaformacao.mytaskmanager.model.entities.Address;
 
-public final class AddressService {
+public final class AddressHttpService {
 
     public static final String URL = "http://correiosapi.apphb.com/cep/";
 
-    private AddressService(){
+    private AddressHttpService(){
         super();
     }
 
@@ -34,7 +34,7 @@ public final class AddressService {
                 address = objectMapper.readValue(inputStream, Address.class);
             }
         } catch (Exception e) {
-            Log.e(AddressService.class.getName(),e.getMessage());
+            Log.e(AddressHttpService.class.getName(),e.getMessage());
         }
 
         return address;

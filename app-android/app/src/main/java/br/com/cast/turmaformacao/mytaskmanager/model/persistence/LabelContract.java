@@ -12,6 +12,7 @@ import br.com.cast.turmaformacao.mytaskmanager.model.entities.Label;
 public class LabelContract {
     public static final String TABLE = "label";
     public static final String ID = "id";
+    public static final String WEB_ID = "web_id";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String COLOR = "color";
@@ -23,6 +24,7 @@ public class LabelContract {
         create.append(" CREATE TABLE " + TABLE);
         create.append(" ( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
+        create.append(WEB_ID + " INTEGER UNIQUE NOT NULL, ");
         create.append(NAME + " TEXT, ");
         create.append(DESCRIPTION + " TEXT, ");
         create.append(COLOR + " TEXT ");
@@ -33,6 +35,7 @@ public class LabelContract {
     public static ContentValues getContentValues(Label label) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ID, label.getId());
+        contentValues.put(WEB_ID, label.getWebId());
         contentValues.put(NAME, label.getName());
         contentValues.put(DESCRIPTION, label.getDescription());
         contentValues.put(COLOR, label.getColor().getHex());
@@ -43,6 +46,7 @@ public class LabelContract {
         if (!cursor.isBeforeFirst() || cursor.moveToNext()) {
             Label label = new Label();
             label.setId(cursor.getInt(cursor.getColumnIndex(ID)));
+            label.setWebId(cursor.getLong(cursor.getColumnIndex(WEB_ID)));
             label.setName(cursor.getString(cursor.getColumnIndex(NAME)));
             label.setDescription(cursor.getString(cursor.getColumnIndex(DESCRIPTION)));
             for (Color color :

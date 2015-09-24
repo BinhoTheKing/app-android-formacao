@@ -13,12 +13,13 @@ import br.com.cast.turmaformacao.mytaskmanager.model.services.UserBusinessServic
 public class TaskContract {
     public static final String TABLE = "task";
     public static final String ID = "id";
+    public static final String WEB_ID = "web_id";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String LABEL_ID = "label_id";
     public static final String USER_ID = "user_id";
 
-    public static final String COLUMNS[] = {ID, NAME, DESCRIPTION, LABEL_ID, USER_ID};
+    public static final String COLUMNS[] = {ID, WEB_ID, NAME, DESCRIPTION, LABEL_ID, USER_ID};
 
     private TaskContract() {
     }
@@ -28,6 +29,7 @@ public class TaskContract {
         create.append(" CREATE TABLE " + TABLE);
         create.append(" ( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
+	    create.append(WEB_ID + " INTEGER UNIQUE NOT NULL, ");
         create.append(NAME + " TEXT, ");
         create.append(DESCRIPTION + " TEXT, ");
         create.append(LABEL_ID + " INTEGER, ");
@@ -43,6 +45,7 @@ public class TaskContract {
     public static ContentValues getContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(ID, task.getId());
+	    values.put(WEB_ID, task.getWebId());
         values.put(NAME, task.getName());
         values.put(DESCRIPTION, task.getDescription());
         values.put(LABEL_ID,task.getLabel().getId());
@@ -54,11 +57,12 @@ public class TaskContract {
     public static Task getTask(Cursor cursor) {
         if (!cursor.isBeforeFirst() || cursor.moveToNext()) {
             Task task = new Task();
-            task.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.ID)));
-            task.setName(cursor.getString(cursor.getColumnIndex(TaskContract.NAME)));
-            task.setDescription(cursor.getString(cursor.getColumnIndex(TaskContract.DESCRIPTION)));
-            task.setLabel(LabelBusinessService.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.LABEL_ID))));
-            task.setUser(UserBusinessService.getById(cursor.getLong(cursor.getColumnIndex(TaskContract.USER_ID))));
+            task.setId(cursor.getLong(cursor.getColumnIndex(ID)));
+	        task.setWebId(cursor.getLong(cursor.getColumnIndex(WEB_ID)));
+            task.setName(cursor.getString(cursor.getColumnIndex(NAME)));
+            task.setDescription(cursor.getString(cursor.getColumnIndex(DESCRIPTION)));
+            task.setLabel(LabelBusinessService.getById(cursor.getLong(cursor.getColumnIndex(LABEL_ID))));
+            task.setUser(UserBusinessService.getById(cursor.getLong(cursor.getColumnIndex(USER_ID))));
             return task;
         }
         return null;

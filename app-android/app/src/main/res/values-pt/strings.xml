@@ -35,4 +35,10 @@
     <string name="lbl_signup">Cadastre-se</string>
     <string name="msg_error_usr">Usuário não encontrado ou senha incorreta, deseja cadastrar novo usuário?</string>
     <string name="msg_error_password_mismatch">As senhas estão diferentes!</string>
+    <string name="lbl_zip_code">Zip Code</string>
+    <string name="lbl_address_type">Tipo</string>
+    <string name="lbl_street">Logradouro</string>
+    <string name="lbl_neighborhood">Bairro</string>
+    <string name="lbl_city">Cidade</string>
+    <string name="lbl_state_uf">UF</string>
 </resources>
